@@ -1,0 +1,202 @@
+import snap7
+import pandas as pd
+import json
+import time
+import re
+from datetime import datetime
+from collections import defaultdict
+from snap7.util import get_bool, get_int, get_real, get_dint, get_byte
+from snap7.types import Areas
+
+# === PLC CONFIG ===
+PLC_IP = "172.16.12.40"
+PLC_RACK = 0
+PLC_SLOT = 5
+
+TAGS_CSV = "Tags.csv"
+MAPPING_CSV = "mapping.csv"
+
+# ✅ Connect to PLC
+def connect_to_plc(ip, rack, slot):
+    client = snap7.client.Client()
+    client.connect(ip, rack, slot)
+    if client.get_connected():
+        print(f"✅ Connected to PLC at {ip}")
+    else:
+        raise Exception("❌ Connection to PLC failed.")
+    return client
+
+# ✅ Parse PLC address
+def parse_tag(tag_type, address):
+    tag_type = tag_type.strip().upper()
+    address = address.strip().upper()
+
+    # Match DB tags like DB 1201.DBD 656
+    db_match = re.match(r"DB\s*(\d+)\s*\.?\s*DB([XBWLD])\s*(\d+)(?:\.(\d))?", address)
+    if db_match:
+        db_number = int(db_match.group(1))  
+        byte = int(db_match.group(3))        
+        bit = int(db_match.group(4)) if db_match.group(4) else None
+        return Areas.DB, db_number, byte, bit, tag_type
+
+    # Match I, Q, M memory areas like I0.0, Q4.2, M100.1
+    io_match = re.match(r"([IQM])\s*(\d+)(?:\.(\d))?", address)
+    if io_match:
+        area = {"I": Areas.PE, "Q": Areas.PA, "M": Areas.MK}[io_match.group(1)]
+        byte = int(io_match.group(2))
+        bit = int(io_match.group(3)) if io_match.group(3) else None
+        return area, 0, byte, bit, tag_type
+
+    # Match marker REALs like MD 700
+    if address.startswith("MD"):
+        byte = int(address.replace("MD", "").strip())
+        return Areas.MK, 0, byte, None, tag_type
+
+    raise ValueError(f"Unsupported address format: {address}")
+
+# ✅ Required bytes for each type
+def get_read_length(tag_type):
+    return 4 if tag_type in ["REAL", "DINT"] else 2 if tag_type == "INT" else 1
+
+# ✅ Load mapping.csv (address → multiple friendly names)
+def load_mapping_file(mapping_csv):
+    df = pd.read_csv(mapping_csv)
+    if "Tags" not in df.columns or "Address" not in df.columns:
+        raise Exception("mapping.csv must have 'Tags' and 'Address' columns")
+
+    mapping_dict = defaultdict(list)
+    for _, row in df.iterrows():
+        addr = row["Address"].strip().upper()
+        name = row["Tags"].strip()
+        mapping_dict[addr].append(name)
+
+    print(f"✅ Loaded {sum(len(v) for v in mapping_dict.values())} friendly names for {len(mapping_dict)} unique PLC addresses")
+    return mapping_dict
+
+# ✅ Load tags.csv & group by (area, db)
+def load_and_group_tags(csv_path):
+    df = pd.read_csv(csv_path)
+    if 'Type' not in df.columns or 'Address' not in df.columns:
+        raise Exception("tags.csv must contain 'Type' and 'Address' columns")
+
+    grouped = defaultdict(list)
+
+    for _, row in df.iterrows():
+        try:
+            area, db, byte, bit, parsed_type = parse_tag(row['Type'], row['Address'])
+            grouped[(area, db)].append((byte, bit, parsed_type, row['Address'].strip().upper()))
+        except Exception as e:
+            print(f"⚠️ Skipping tag {row['Address']} → {e}")
+
+    print(f"✅ Grouped {len(df)} tags into {len(grouped)} PLC read groups")
+    return grouped
+
+# ✅ Bulk read all grouped tags once
+def read_grouped_tags(client, grouped_tags):
+    raw_values = {}
+
+    for (area, db), tag_list in grouped_tags.items():
+        if not tag_list:
+            continue
+
+        # Compute minimal byte range
+        min_byte = min(byte for byte, _, _, _ in tag_list)
+        max_byte = max(byte + get_read_length(tp) for byte, _, tp, _ in tag_list)
+        length = max_byte - min_byte
+
+        try:
+            data = client.read_area(area, db, min_byte, length)
+        except Exception as e:
+            print(f"❌ Failed bulk read area={area} db={db}: {e}")
+            for _, _, _, address in tag_list:
+                raw_values[address] = None
+            continue
+
+        # Extract each tag value from bulk data
+        for byte, bit, tag_type, address in tag_list:
+            offset = byte - min_byte
+            try:
+                if tag_type == "BOOL":
+                    value = get_bool(data, offset, bit if bit is not None else 0)
+                elif tag_type == "INT":
+                    value = get_int(data, offset)
+                elif tag_type == "REAL":
+                    value = get_real(data, offset)
+                elif tag_type == "DINT":
+                    value = get_dint(data, offset)
+                elif tag_type == "BYTE":
+                    value = get_byte(data, offset)
+                else:
+                    value = None
+                raw_values[address] = value
+            except Exception as ve:
+                print(f"⚠️ Parse error for {address}: {ve}")
+                raw_values[address] = None
+
+    return raw_values
+
+# ✅ Expand PLC addresses to friendly names (mapping.csv)
+def expand_to_friendly_names(raw_values, mapping_dict):
+    expanded_json = {}
+
+    for addr, value in raw_values.items():
+        if addr in mapping_dict:
+            # Duplicate value for all friendly names
+            for name in mapping_dict[addr]:
+                expanded_json[name] = value
+        else:
+            # Keep raw address if no mapping found
+            expanded_json[addr] = value
+
+    return expanded_json
+
+# === MAIN LOOP ===
+def main():
+    client = connect_to_plc(PLC_IP, PLC_RACK, PLC_SLOT)
+
+    # Load mappings once
+    mapping_dict = load_mapping_file(MAPPING_CSV)
+
+    # Group tags for optimized reading
+    grouped_tags = load_and_group_tags(TAGS_CSV)
+
+    try:
+        while True:
+            start_time = time.time()
+
+            # STEP 1: Read raw PLC values
+            raw_values = read_grouped_tags(client, grouped_tags)
+
+            # STEP 2: Expand to friendly names
+            tags_json = expand_to_friendly_names(raw_values, mapping_dict)
+
+            # STEP 3: Wrap with timestamp (UTC ISO 8601)
+            wrapped_json = {
+                "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "tags": tags_json
+            }
+
+            # STEP 4: Create NEW JSON FILE each time
+            timestamp_filename = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            json_filename = f"plc_data_{timestamp_filename}.json"
+
+            with open(json_filename, "w") as f:
+                json.dump(wrapped_json, f, indent=4)
+
+            print(f"✅ Saved {json_filename} ({len(tags_json)} tags)")
+
+            elapsed = time.time() - start_time
+            print(f"Cycle finished in {elapsed:.3f}s")
+
+            # Keep ~1 second cycle
+            time.sleep(max(0, 1 - elapsed))
+
+    except KeyboardInterrupt:
+        print("🛑 Stopped by user.")
+    finally:
+        client.disconnect()
+        print("🔌 Disconnected from PLC.")
+
+if __name__ == "__main__":
+    main()
+#new

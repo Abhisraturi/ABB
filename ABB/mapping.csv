@@ -1,0 +1,205 @@
+Tags,Signal Position in iba file,UoM,Address
+TWC1A_SpeedReference1,[3:0],drive units,DB 1401.DBW 124
+TWC1A_SpeedReference2,[3:1],drive units,DB 1401.DBW 168
+TWC1A_ActualSpeed1,[3:2],drive units,DB 1401.DBW 104
+TWC1A_ActualSpeed2,[3:3],drive units,DB 1401.DBW 148
+TWC1A_TorqueLimit1,[3:4],drive units,DB 1401.DBW 128
+TWC1A_TorqueLimit2,[3:5],drive units,DB 1401.DBW 172
+TWC1A_ActualTorque1,[3:6],drive units,DB 1401.DBW 108
+TWC1A_ActualTorque2,[3:7],drive units,DB 1401.DBW 152
+TWC1A_ActPosition1,[3:8],deg,DB 1409.DBD 60
+TWC1A_ActPosition2,[3:9],deg,DB 1410.DBD 60
+TWC1A_SetPosition1,[3:10],deg,DB 1416.DBD 4
+TWC1A_SetPosition2,[3:11],deg,DB 1417.DBD 4
+TWC1B_SpeedReference1,[3:12],drive units,DB 1421.DBW 124
+TWC1B_SpeedReference2,[3:13],drive units,DB 1421.DBW 168
+TWC1B_ActualSpeed1,[3:14],drive units,DB 1421.DBW 104
+TWC1B_ActualSpeed2,[3:15],drive units,DB 1421.DBW 148
+TWC1B_TorqueLimit1,[3:16],drive units,DB 1421.DBW 128
+TWC1B_TorqueLimit2,[3:17],drive units,DB 1421.DBW 172
+TWC1B_ActualTorque1,[3:18],drive units,DB 1421.DBW 108
+TWC1B_ActualTorque2,[3:19],drive units,DB 1421.DBW 152
+TWC1B_ActPosition1,[3:20],deg,DB 1429.DBD 60
+TWC1B_ActPosition2,[3:21],deg,DB 1430.DBD 60
+TWC1B_SetPosition1,[3:22],deg,DB 1436.DBD 4
+TWC1B_SetPosition2,[3:23],deg,DB 1437.DBD 4
+TWC2A_SpeedReference1,[3:24],drive units,DB 1441.DBW 124
+TWC2A_SpeedReference2,[3:25],drive units,DB 1441.DBW 168
+TWC2A_ActualSpeed1,[3:26],drive units,DB 1441.DBW 104
+TWC2A_ActualSpeed2,[3:27],drive units,DB 1441.DBW 148
+TWC2A_TorqueLimit1,[3:28],drive units,DB 1441.DBW 128
+TWC2A_TorqueLimit2,[3:29],drive units,DB 1441.DBW 172
+TWC2A_ActualTorque1,[3:30],drive units,DB 1441.DBW 108
+TWC2A_ActualTorque2,[3:31],drive units,DB 1441.DBW 152
+TWC2A_ActPosition1,[3:32],deg,DB 1449.DBD 60
+TWC2A_ActPosition2,[3:33],deg,DB 1450.DBD 60
+TWC2A_SetPosition1,[3:34],deg,DB 1456.DBD 4
+TWC2A_SetPosition2,[3:35],deg,DB 1457.DBD 4
+TWC2B_SpeedReference1,[3:36],drive units,DB 1461.DBW 124
+TWC2B_SpeedReference2,[3:37],drive units,DB 1461.DBW 168
+TWC2B_ActualSpeed1,[3:38],drive units,DB 1461.DBW 104
+TWC2B_ActualSpeed2,[3:39],drive units,DB 1461.DBW 148
+TWC2B_TorqueLimit1,[3:40],drive units,DB 1461.DBW 128
+TWC2B_TorqueLimit2,[3:41],drive units,DB 1461.DBW 172
+TWC2B_ActualTorque1,[3:42],drive units,DB 1461.DBW 108
+TWC2B_ActualTorque2,[3:43],drive units,DB 1461.DBW 152
+TWC2B_ActPosition1,[3:44],deg,DB 1469.DBD 60
+TWC2B_ActPosition2,[3:45],deg,DB 1470.DBD 60
+TWC2B_SetPosition1,[3:46],deg,DB 1476.DBD 4
+TWC2B_SetPosition2,[3:47],deg,DB 1477.DBD 4
+TB21A_WORK_DB.BrakingTriggerPoint,[3:59],mm,DB 1201.DBD 676
+TB21B_WORK_DB.BrakingTriggerPoint,[3:60],mm,DB 1221.DBD 676
+TB22A_WORK_DB.BrakingTriggerPoint,[3:61],mm,DB 1241.DBD 676
+TB22B_WORK_DB.BrakingTriggerPoint,[3:62],mm,DB 1261.DBD 676
+TWC1A_WORK_DB.CobbleDetect,[3.0],,DB 1401.DBX 611.7
+TWC1B_WORK_DB.CobbleDetect,[3.1],,DB 1421.DBX 611.7
+TWC2A_WORK_DB.CobbleDetect,[3.2],,DB 1441.DBX 611.7
+TWC2B_WORK_DB.CobbleDetect,[3.3],,DB 1461.DBX 611.7
+TWC1A_WORK_DB.TWC_SafetyTrigger_ONS,[3.4],,DB 1401.DBX 803.3
+TWC1B_WORK_DB.TWC_SafetyTrigger_ONS,[3.5],,DB 1421.DBX 803.3
+TWC2A_WORK_DB.TWC_SafetyTrigger_ONS,[3.6],,DB 1441.DBX 803.3
+TWC2B_WORK_DB.TWC_SafetyTrigger_ONS,[3.7],,DB 1461.DBX 803.3
+TWC_GREASE_PRESSURE_SWITCH_LINE-1,[3.58],,I 87.7
+TWC_GREASE_PRESSURE_SWITCH_LINE-2,[3.59],,I 88.0
+TB2_1A_SetLinearSpeed,[4:28],mm/s,DB 1204.DBD 76
+TB2_1A_ActualLinearSpeed,[4:29],mm/s,DB 1201.DBD 632
+TB2_1A_TorqueLimitPct,[4:30],%,DB 1201.DBD 612
+TB2_1A_ActualTorquePct,[4:31],%,DB 1201.DBW 868
+TB2_1A_MotorCurrent,[4:32],A,DB 1201.DBW 870
+TB2_1A_BarHeadPosition,[4:33],mm,DB 1201.DBW 872
+TB2_1A_BarTailPosition,[4:34],mm,DB 1201.DBW 874
+TB2_1B_SetLinearSpeed,[4:35],mm/s,DB 1224.DBD 76
+TB2_1B_ActualLinearSpeed,[4:36],mm/s,DB 1221.DBD 632
+TB2_1B_TorqueLimitPct,[4:37],%,DB 1221.DBD 612
+TB2_1B_ActualTorquePct,[4:38],%,DB 1221.DBW 868
+TB2_1B_MotorCurrent,[4:39],A,DB 1221.DBW 870
+TB2_1B_BarHeadPosition,[4:40],mm,DB 1221.DBD 652
+TB2_1B_BarTailPosition,[4:41],mm,DB 1221.DBD 656
+TB2_2A_SetLinearSpeed,[4:42],mm/s,DB 1244.DBD 76
+TB2_2A_ActualLinearSpeed,[4:43],mm/s,DB 1241.DBD 632
+TB2_2A_TorqueLimitPct,[4:44],%,DB 1241.DBD 612
+TB2_2A_ActualTorquePct,[4:45],%,DB 1241.DBW 868
+TB2_2A_MotorCurrent,[4:46],A,DB 1241.DBW 870
+TB2_2A_BarHeadPosition,[4:47],mm,DB 1241.DBD 652
+TB2_2A_BarTailPosition,[4:48],mm,DB 1241.DBD 656
+TB2_2B_SetLinearSpeed,[4:49],mm/s,DB 1264.DBD 76
+TB2_2B_ActualLinearSpeed,[4:50],mm/s,DB 1261.DBD 632
+TB2_2B_TorqueLimitPct,[4:51],%,DB 1261.DBD 612
+TB2_2B_ActualTorquePct,[4:52],%,DB 1261.DBW 868
+TB2_2B_MotorCurrent,[4:53],A,DB 1261.DBW 870
+TB2_2B_BarHeadPosition,[4:54],mm,DB 1261.DBD 652
+TB2_2B_BarTailPosition,[4:55],mm,DB 1261.DBD 656
+TB2_1A_TailPos,[4:59],,DB 1201.DBD 656
+TB2_1B_TailPos,[4:60],,DB 1221.DBD 656
+TB2_2A_TailPos,[4:61],,DB 1241.DBD 656
+TB2_2B_TailPos,[4:62],,DB 1261.DBD 656
+TB2_1B_RollsCloseCmd,[4.0],,DB 1221.DBX 762.0
+TB2_1B_HighPressClose,[4.1],,DB 1221.DBX 762.3
+TB2_1B_OverspeedSel,[4.2],,DB 1221.DBX 570.1
+TB2_1B_ReducedOvspdSel,[4.3],,DB 1221.DBX 570.2
+TB2_1B_TailSpeedSel,[4.4],,DB 1221.DBX 570.3
+TB2_1B_BrakingSpeedSel,[4.5],,DB 1221.DBX 570.4
+TB2_1B_LimitedTorque,[4.6],,DB 1221.DBX 570.5
+TB2_2A_RollsCloseCmd,[4.7],,DB 1241.DBX 762.0
+TB2_2A_HighPressClose,[4.8],,DB 1241.DBX 762.3
+TB2_2A_OverspeedSel,[4.9],,DB 1241.DBX 570.1
+TB2_2A_ReducedOvspdSel,[4.10],,DB 1241.DBX 570.2
+TB2_2A_TailSpeedSel,[4.11],,DB 1241.DBX 570.3
+TB2_2A_BrakingSpeedSel,[4.12],,DB 1241.DBX 570.4
+TB2_2A_LimitedTorque,[4.13],,DB 1241.DBX 570.5
+TB2_2B_RollsCloseCmd,[4.14],,DB 1261.DBX 762.0
+TB2_2B_HighPressClose,[4.15],,DB 1261.DBX 762.3
+TB2_2B_OverspeedSel,[4.16],,DB 1261.DBX 570.1
+TB2_2B_ReducedOvspdSel,[4.17],,DB 1261.DBX 570.2
+TB2_2B_TailSpeedSel,[4.18],,DB 1261.DBX 570.3
+TB2_2B_BrakingSpeedSel,[4.19],,DB 1261.DBX 570.4
+TB2_2B_LimitedTorque,[4.20],,DB 1261.DBX 570.5
+Cobble detection in TWC-1,[4.25],,I 84.0
+Cobble detection in TWC-2,[4.26],,I 84.1
+TB2_1A_RollsCloseCmd,[4.56],,DB 1201.DBX 762.0
+TB2_1A_HighPressClose,[4.57],,DB 1201.DBX 762.3
+TB2_1A_OverspeedSel,[4.58],,DB 1201.DBX 570.1
+TB2_1A_ReducedOvspdSel,[4.59],,DB 1201.DBX 570.2
+TB2_1A_TailSpeedSel,[4.60],,DB 1201.DBX 570.3
+TB2_1A_BrakingSpeedSel,[4.61],,DB 1201.DBX 570.4
+TB2_1A_LimitedTorque,[4.62],,DB 1201.DBX 570.5
+HMD30_TWCA_ENTRY,[6.59],,I 6.7
+HMD31_TWCB_ENTRY,[6.60],,I 7.1
+HMD23_CVRD_ENTRY,[6.61],,I 6.1
+HMD28_TWCA_ENTRY,[9.10],,I 6.7
+HMD29_TWCB_ENTRY,[9.11],,I 7.1
+HMD22,[9.12],,I 6.1
+HMD28_TWCA_ENTRY_FILTERED,[9.31],,Q 353.6
+HMD29_TWCB_ENTRY_FILTERED,[9.32],,Q 353.7
+HMD30_TWCA_ENTRY_FILTERED,[10.42],,Q 353.6
+HMD31_TWCB_ENTRY_FILTERED,[10.43],,Q 353.7
+TB21A_ClsPressure,[32:4],Bar,DB 1201.DBD 708
+TB21B_ClsPressure,[32:5],Bar,DB 1221.DBD 708
+TB22A_ClsPressure,[32:6],Bar,DB 1241.DBD 708
+TB22B_ClsPressure,[32:7],Bar,DB 1261.DBD 708
+TWC1A_TailSpeedInOutTB,[32:26],,DB 1401.DBD 712
+TWC1B_TailSpeedInOutTB,[32:27],,DB 1421.DBD 712
+TWC2A_TailSpeedInOutTB,[32:28],,DB 1441.DBD 712
+TWC2B_TailSpeedInOutTB,[32:29],,DB 1461.DBD 712
+TWC1A_ActCurrent1,[32:31],,DB 1401.DBW 110
+TWC1A_ActCurrent2,[32:32],,DB 1401.DBW 154
+TWC1B_ActCurrent1,[32:33],,DB 1421.DBW 110
+TWC1B_ActCurrent2,[32:34],,DB 1421.DBW 154
+TWC2A_ActCurrent1,[32:35],,DB 1441.DBW 110
+TWC2A_ActCurrent2,[32:36],,DB 1441.DBW 154
+TWC2B_ActCurrent1,[32:37],,DB 1461.DBW 110
+TWC2B_ActCurrent2,[32:38],,DB 1461.DBW 154
+TB_LUB_TankOilTemperature,[32:41],,DB 220.DBW 1720
+TB_LUB_DeliveryOilTemperature,[32:42],,DB 220.DBW 1722
+TB_ACC_OUT_AIR_PRESSURE,[32:43],Bar,DB 1201.DBD 728
+TB_ACC_IN_AIR_PRESSURE,[32:44],Bar,DB 1101.DBD 724
+TWC_GRS_WR_CYC_AUTO_TODAY,[32:61],,DB 220.DBW 1766
+TWC_GRS_WR_CYC_AUTO_LAST_DAY,[32:62],,DB 220.DBW 1768
+TB_LUB_HeaterOn,[32.0],,Q 402.6
+TB2_Tail braker order to switch high pressure,[32.33],,I 304.1
+TB2_1B_Tail head detach when divide,[32.34],,DB 1221.DBX 570.7
+TB2_1A_TAIL HEAD DETACH,[32.37],,DB 1201.DBX 570.7
+TWC1A_BarOutOfTailBraker,[32.39],,DB 1401.DBX 803.1
+TWC1B_BarOutOfTailBraker,[32.40],,DB 1421.DBX 803.1
+TWC2A_BarOutOfTailBraker,[32.41],,DB 1441.DBX 803.1
+TWC2B_BarOutOfTailBraker,[32.42],,DB 1461.DBX 803.1
+TB21A_TailAfterShearOnTBLine,[32.43],,DB 1201.DBX 764.7
+TB21B_TailAfterShearOnTBLine,[32.44],,DB 1221.DBX 764.7
+TB22A_TailAfterShearOnTBLine,[32.45],,DB 1241.DBX 764.7
+TB22B_TailAfterShearOnTBLine,[32.46],,DB 1261.DBX 764.7
+TB21A_WR_SAFETY_TIME,[33:0],ms,DB 201.DBW 412
+TB21B_WR_SAFETY_TIME,[33:1],ms,DB 201.DBW 452
+TB22A_WR_SAFETY_TIME,[33:2],ms,DB 201.DBW 492
+TB22B_WR_SAFETY_TIME,[33:3],ms,DB 201.DBW 532
+TB2_1A_ActualSpeed,[33:45],,DB 1201.DBW 104
+TB2_1B_ActualSpeed,[33:46],,DB 1221.DBW 104
+TB2_2A_ActualSpeed,[33:47],,DB 1241.DBW 104
+TB2_2B_ActualSpeed,[33:48],,DB 1261.DBW 104
+TB2_1A_SpeedRef,[33:49],,DB 1201.DBW 124
+TB2_1B_SpeedRef,[33:50],,DB 1221.DBW 124
+TB2_2A_SpeedRef,[33:51],,DB 1241.DBW 124
+TB2_2B_SpeedRef,[33:52],,DB 1261.DBW 124
+TB2_1A_RollsClose_solvalve_2,[33.2],,Q 73.7
+TB2_1A_HighPressClose_solvalve_2,[33.3],,Q 74.0
+TB2_1B_RollsClose_solvalve_2,[33.4],,Q 74.1
+TB2_1B_HighPressClose_solvalve_2,[33.5],,Q 76.4
+TB2_2A_RollsClose_solvalve_2,[33.6],,Q 76.5
+TB2_2A_HighPressClose_solvalve_2,[33.7],,Q 76.6
+TB2_2B_RollsClose_solvalve_2,[33.8],,Q 76.7
+TB2_2B_HighPressClose_solvalve_2,[33.9],,Q 77.3
+TB2_1A_selection_valve1,[33.10],,DB 1201.DBX 938.1
+TB2_1A_selection_valve2,[33.11],,DB 1201.DBX 938.3
+TB2_1B_selection_valve1,[33.12],,DB 1221.DBX 938.1
+TB2_1B_selection_valve2,[33.13],,DB 1221.DBX 938.3
+TB2_2A_selection_valve1,[33.14],,DB 1241.DBX 938.1
+TB2_2A_selection_valve2,[33.15],,DB 1241.DBX 938.3
+TB2_2B_selection_valve1,[33.16],,DB 1261.DBX 938.1
+TB2_2B_selection_valve2,[33.17],,DB 1261.DBX 938.3
+TB2_2B_RollsClose_solvalve,[33.18],,Q 76.2
+TB2_2B_HighPressClose_solvalve,[33.19],,Q 76.3
+TB2_2A_RollsClose_solvalve,[33.20],,Q 76.0
+TB2_2A_HighPressClose_solvalve,[33.21],,Q 76.1
+TWC_2B_Reset_HMI,[33.22],,DB 207.DBX 463.7
+TWC_1B_Reset_HMI,[33.23],,DB 207.DBX 423.7
+TWC_1A_Reset_HMI,[33.24],,DB 207.DBX 403.7
+TWC_2A_Reset_HMI,[33.25],,DB 207.DBX 443.7
